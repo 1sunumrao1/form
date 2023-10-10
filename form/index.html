@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>login</title>
+  </head>
+  <body class="main_body">
+    <div class="main_container">
+      <div class="left-container">
+        <!-- Sign in div starts -->
+        <div class="all-frm left-border" id="signinDiv">
+          <form id="signin-frm" class="frm-layout" action="#">
+            <h1 class="gs-title">Sign in</h1>
+            <input
+              type="text"
+              id="lgn-un"
+              class="input-box"
+              placeholder="Username or Email"
+              autocomplete="username"
+            />
+            <input
+              type="password"
+              id="lgn-pwd"
+              class="input-box"
+              placeholder="Password"
+              autocomplete="current-password"
+            />
+            <a id="fgt-lnk" class="a-tag" href="#">Forgot your password?</a>
+            <button id="lgn-btn" class="btn">Sign In</button>
+          </form>
+        </div>
+        <!-- Sign in div ends -->
+
+        <!-- forgot password div starts -->
+        <div
+          class="forgot_password frm-layout all-frm left-border hide"
+          id="forgotPwdDiv"
+        >
+          <form id="reg-frm " class="frm-layout" action="#">
+            <h1 class="gs-title">Forgot?</h1>
+            <span
+              >Enter username or email to receive email with reset
+              instructions</span
+            >
+            <input
+              id="fgt-un"
+              class="input-box"
+              type="text"
+              placeholder="Email"
+              autocomplete="username"
+            />
+            <button id="fgt-btn" class="btn">Send</button>
+            <a id="fgt-cnl-lnk" class="a-tag" href="#">Cancel</a>
+          </form>
+        </div>
+        <!-- forgot password div ends -->
+
+        <!-- already registered text div starts -->
+        <div
+          class="left-card card1 left-border hide"
+          style="border-color: #492000"
+          id="alreadyRegisteredDiv"
+        >
+          <h1 class="card-h1">
+            Already<br />
+            Registered?
+          </h1>
+          <p class="card-p">
+            To keep connected with us please login with your personal info
+          </p>
+          <button class="card-btn" id="signIn">Sign In</button>
+        </div>
+        <!-- already registered text div ends -->
+      </div>
+      <div class="right-container">
+        <!-- register div starts -->
+        <div
+          class="all-frm right-border hide"
+          id="registerDiv"
+          style="border-color: #ffffff"
+        >
+          <form id="reg-frm " class="frm-layout" action="#">
+            <h1 class="gs-title">Create Account</h1>
+            <input
+              id="reg-fn"
+              class="input-box"
+              type="text"
+              placeholder="First Name"
+              autocomplete="given-name"
+            />
+            <input
+              id="reg-ln"
+              class="input-box"
+              type="text"
+              placeholder="Last Name"
+              autocomplete="family-name"
+            />
+            <input
+              id="reg-un"
+              class="input-box"
+              type="text"
+              placeholder="Username"
+            />
+            <input
+              id="reg-eml"
+              class="input-box"
+              type="email"
+              placeholder="Email"
+              autocomplete="email"
+            />
+            <input
+              id="reg-pwd"
+              class="input-box"
+              type="password"
+              placeholder="Password"
+              autocomplete="off"
+            />
+            <input
+              id="reg-cfm"
+              class="input-box"
+              type="password"
+              placeholder="Confirm Password"
+              autocomplete="off"
+            />
+            <button id="reg-btn" class="btn">Sign Up</button>
+          </form>
+        </div>
+        <!-- register div ends -->
+
+        <!-- sign up banner div starts -->
+        <div class="right-card card1 right-border" id="newHereDiv">
+          <h1 class="card-h1">New Here?</h1>
+          <p class="card-p">
+            Enter your personal details and start journey with us
+          </p>
+          <button class="card-btn" id="signUp">Sign Up</button>
+        </div>
+        <!-- sign up banner div ends -->
+      </div>
+    </div>
+
+    <script>
+      const signInBtn = document.getElementById("signIn");
+      const forgotLink = document.getElementById("fgt-lnk");
+      const signUpBtn = document.getElementById("signUp");
+      const forgotCancelBtn = document.getElementById("fgt-cnl-lnk");
+
+      const formLeftSideDivIds = [
+        "signinDiv",
+        "forgotPwdDiv",
+        "alreadyRegisteredDiv",
+      ];
+      const formRightSideDivIds = ["registerDiv", "newHereDiv"];
+
+      const btnClickFn = (e, divId, formSideDivs) => {
+        e.stopPropagation();
+        for (let div of formSideDivs) {
+          const getDiv = document.getElementById(div);
+          div === divId
+            ? getDiv.classList.remove("hide")
+            : getDiv.classList.add("hide");
+        }
+      };
+
+      //   forgot link click handler
+      forgotLink.addEventListener("click", (e) => {
+        btnClickFn(e, "forgotPwdDiv", formLeftSideDivIds);
+      });
+
+      // forgot form cancel btn click handler
+      forgotCancelBtn.addEventListener("click", (e) => {
+        btnClickFn(e, "signinDiv", formLeftSideDivIds);
+      });
+
+      // Signup btn click handler (right banner)
+      signUpBtn.addEventListener("click", (e) => {
+        btnClickFn(e, "alreadyRegisteredDiv", formLeftSideDivIds);
+        btnClickFn(e, "registerDiv", formRightSideDivIds);
+      });
+
+      // Signin btn click handler (left banner)
+      signInBtn.addEventListener("click", (e) => {
+        btnClickFn(e, "signinDiv", formLeftSideDivIds);
+        btnClickFn(e, "newHereDiv", formRightSideDivIds);
+      });
+    </script>
+  </body>
+</html>
